@@ -25,10 +25,10 @@ class PageTurn extends StatefulWidget {
   final double cutoff;
 
   @override
-  _PageTurnState createState() => _PageTurnState();
+  PageTurnState createState() => PageTurnState();
 }
 
-class _PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
+class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
   int pageNumber = 0;
   List<Widget> pages = [];
 
@@ -109,16 +109,16 @@ class _PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
       if (_isForward) {
         if (!_isLastPage &&
             _controllers[pageNumber].value <= (widget.cutoff + 0.15)) {
-          await _nextPage();
+          await nextPage();
         } else {
           await _controllers[pageNumber].forward();
         }
       } else {
         print(
-            'Val:${_controllers[pageNumber - 1].value } -> ${widget.cutoff+ 0.28}');
+            'Val:${_controllers[pageNumber - 1].value} -> ${widget.cutoff + 0.28}');
         if (!_isFirstPage &&
             _controllers[pageNumber - 1].value >= widget.cutoff) {
-          await _previousPage();
+          await previousPage();
         } else {
           if (_isFirstPage) {
             await _controllers[pageNumber].forward();
@@ -131,7 +131,7 @@ class _PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
     _isForward = null;
   }
 
-  Future _nextPage() async {
+  Future nextPage() async {
     print('Next Page..');
     await _controllers[pageNumber].reverse();
     if (mounted)
@@ -140,13 +140,31 @@ class _PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
       });
   }
 
-  Future _previousPage() async {
+  Future previousPage() async {
     print('Previous Page..');
     await _controllers[pageNumber - 1].forward();
     if (mounted)
       setState(() {
         pageNumber--;
       });
+  }
+
+  Future goToPage(int index) async {
+    print('Navigate Page ${index + 1}..');
+    if (mounted)
+      setState(() {
+        pageNumber = index;
+      });
+    for (var i = 0; i < _controllers.length; i++) {
+      if (i == index) {
+        _controllers[i].forward();
+      } else if (i < index) {
+        _controllers[i].value = 0;
+      } else {
+        if (_controllers[i].status == AnimationStatus.reverse)
+          _controllers[i].value = 1;
+      }
+    }
   }
 
   @override
@@ -181,7 +199,7 @@ class _PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
                             : null,
                         child: GestureDetector(
                           behavior: HitTestBehavior.opaque,
-                          onTap: _isFirstPage ? null : _previousPage,
+                          onTap: _isFirstPage ? null : previousPage,
                         ),
                       ),
                     ),
@@ -193,7 +211,7 @@ class _PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
                             : null,
                         child: GestureDetector(
                           behavior: HitTestBehavior.opaque,
-                          onTap: _isLastPage ? null : _nextPage,
+                          onTap: _isLastPage ? null : nextPage,
                         ),
                       ),
                     ),

@@ -13,24 +13,48 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PageTurn(
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = GlobalKey<PageTurnState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageTurn(
+        key: _controller,
         backgroundColor: Colors.white,
         showDragCutoff: false,
         lastPage: Container(child: Center(child: Text('Last Page!'))),
         children: <Widget>[
-          AlicePage1(),
-          AlicePage1(),
-          AlicePage1(),
-          Container(child: Center(child: Text('Page 1'))),
-          Container(child: Center(child: Text('Page 2'))),
-          Container(child: Center(child: Text('Page 3'))),
+          for (var i = 0; i < 20; i++) AlicePage(page: i),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.search),
+        onPressed: () {
+          _controller.currentState.goToPage(2);
+        },
       ),
     );
   }
 }
 
-class AlicePage1 extends StatelessWidget {
+class AlicePage extends StatelessWidget {
+  final int page;
+
+  const AlicePage({Key key, this.page}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle.merge(
@@ -43,7 +67,7 @@ class AlicePage1 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Text(
-                "CHAPTER I",
+                "CHAPTER $page",
                 style: TextStyle(
                   fontSize: 32.0,
                   fontWeight: FontWeight.bold,
