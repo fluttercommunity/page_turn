@@ -14,10 +14,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: PageTurn(
+        backgroundColor: Colors.white,
+        lastPage: Container(child: Center(child: Text('Last Page!'))),
         children: <Widget>[
           AlicePage1(),
           AlicePage1(),
           AlicePage1(),
+          Container(child: Center(child: Text('Page 1'))),
+          Container(child: Center(child: Text('Page 2'))),
+          Container(child: Center(child: Text('Page 3'))),
         ],
       ),
     );
