@@ -2,15 +2,46 @@
 
 Demonstrates how to use the page_turn plugin.
 
-## Getting Started
+## Example
 
-This project is a starting point for a Flutter application.
+```dart
+import 'package:flutter/material.dart';
 
-A few resources to get you started if this is your first Flutter project:
+import 'package:page_turn/page_turn.dart';
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+import '../common/index.dart';
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = GlobalKey<PageTurnState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageTurn(
+        key: _controller,
+        backgroundColor: Colors.white,
+        showDragCutoff: false,
+        lastPage: Container(child: Center(child: Text('Last Page!'))),
+        children: <Widget>[
+          for (var i = 0; i < 20; i++) AlicePage(page: i),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.search),
+        onPressed: () {
+          _controller.currentState.goToPage(2);
+        },
+      ),
+    );
+  }
+}
+
+```

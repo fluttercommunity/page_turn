@@ -1,16 +1,3 @@
-# page_turn_example
-
-Demonstrates how to use the page_turn plugin.
-
-## Screenshots
-
-![info](/screensshots/demo.gif)
-![info](/screensshots/turn.png)
-![info](/screensshots/cutoff.png)
-
-## Example
-
-```dart
 import 'package:flutter/material.dart';
 
 import 'package:page_turn/page_turn.dart';
@@ -49,5 +36,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-```
