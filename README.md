@@ -1,12 +1,16 @@
-# page_turn_example
+[![Flutter Community: page_turn](https://fluttercommunity.dev/_github/header/page_turn)](https://github.com/fluttercommunity/community)
 
-Demonstrates how to use the page_turn plugin.
+# Page Turn Widget
+
+[![pub package](https://img.shields.io/pub/v/page_turn.svg)](https://pub.dartlang.org/packages/page_turn)
+
+Add a page turn effect to widgets in your app.
 
 ## Screenshots
 
-![info](/screensshots/demo.gif)
-![info](/screensshots/turn.png)
-![info](/screensshots/cutoff.png)
+![info](https://raw.githubusercontent.com/fluttercommunity/page_turn/screenshots/screenshots/demo.gif)
+![info](https://raw.githubusercontent.com/fluttercommunity/page_turn/screenshots/screenshots/turn.png)
+![info](https://raw.githubusercontent.com/fluttercommunity/page_turn/screenshots/screenshots/cutoff.png)
 
 ## Example
 
