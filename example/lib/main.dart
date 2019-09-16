@@ -15,6 +15,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: PageTurn(
         backgroundColor: Colors.white,
+        showDragCutoff: false,
         lastPage: Container(child: Center(child: Text('Last Page!'))),
         children: <Widget>[
           AlicePage1(),

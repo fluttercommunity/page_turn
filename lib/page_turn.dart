@@ -13,7 +13,7 @@ class PageTurn extends StatefulWidget {
     @required this.children,
     this.initialIndex = 0,
     this.lastPage,
-    this.showDragCutoff = true,
+    this.showDragCutoff = false,
   }) : super(key: key);
 
   final Color backgroundColor;
