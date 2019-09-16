@@ -159,7 +159,8 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
       if (i == index) {
         _controllers[i].forward();
       } else if (i < index) {
-        _controllers[i].value = 0;
+        // _controllers[i].value = 0;
+        _controllers[i].reverse();
       } else {
         if (_controllers[i].status == AnimationStatus.reverse)
           _controllers[i].value = 1;
