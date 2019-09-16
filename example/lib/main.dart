@@ -14,14 +14,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: PageTurn(
-        child: AlicePage1(),
-        //   children: <Widget>[
-        //     AlicePage1(),
-        //     Container(color: Colors.red),
-        //     AlicePage1(),
-        //     Container(color: Colors.blue),
-        //     AlicePage1(),
-        //   ],
+        children: <Widget>[
+          AlicePage1(),
+          AlicePage1(),
+          AlicePage1(),
+        ],
       ),
     );
   }
