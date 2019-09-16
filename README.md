@@ -4,9 +4,9 @@ Demonstrates how to use the page_turn plugin.
 
 ## Screenshots
 
-![info](/screensshots/demo.gif)
-![info](/screensshots/turn.png)
-![info](/screensshots/cutoff.png)
+![info](/screenshots/demo.gif)
+![info](/screenshots/turn.png)
+![info](/screenshots/cutoff.png)
 
 ## Example
 
