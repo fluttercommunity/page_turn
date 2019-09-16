@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - page_turn (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `.symlinks/flutter/ios`)
+  - page_turn (from `.symlinks/plugins/page_turn/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+  page_turn:
+    :path: ".symlinks/plugins/page_turn/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  page_turn: 7c743117b4b180df200218d123f5bc5f6a38a975
+
+PODFILE CHECKSUM: 10ae9c18d12c9ffc2275c9a159a3b1e281990db0
+
+COCOAPODS: 1.7.2
