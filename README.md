@@ -4,9 +4,9 @@ Demonstrates how to use the page_turn plugin.
 
 ## Screenshots
 
-![info](/screenshots/demo.gif)
-![info](/screenshots/turn.png)
-![info](/screenshots/cutoff.png)
+![info](https://github.com/AppleEducate/page_turn/blob/master/screenshots/demo.gif?raw=true)
+![info](https://github.com/AppleEducate/page_turn/blob/master/screenshots/turn.png?raw=true)
+![info](https://github.com/AppleEducate/page_turn/blob/master/screenshots/cutoff.png?raw=true)
 
 ## Example
 
