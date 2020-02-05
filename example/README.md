@@ -1,6 +1,8 @@
-# page_turn_example
+# page_turn
 
 Demonstrates how to use the page_turn plugin.
+
+Online Demo: https://fluttercommunity.github.io/page_turn/
 
 ## Example
 
