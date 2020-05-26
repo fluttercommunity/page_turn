@@ -3,6 +3,7 @@
 # Page Turn Widget
 
 [![pub package](https://img.shields.io/pub/v/page_turn.svg)](https://pub.dartlang.org/packages/page_turn)
+![github pages](https://github.com/fluttercommunity/page_turn/workflows/github%20pages/badge.svg)
 
 Add a page turn effect to widgets in your app.
 
