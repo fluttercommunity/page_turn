@@ -1,6 +1,6 @@
 name: page_turn
 description: Page Turn Widget | Add a page turn effect to widgets in your app.
-version: 1.0.0
+version: 1.0.1
 authors:
  - Flutter Community <community@flutter.zone>
  - Simon Lightfoot <simon@devangels.london>

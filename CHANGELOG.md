@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+* Waiting for widget to load
+
 ## 1.0.0
 
 * Bumping Version
