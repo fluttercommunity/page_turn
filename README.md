@@ -7,6 +7,8 @@
 
 Add a page turn effect to widgets in your app.
 
+Created by Simon Lightfoot @slightfoot
+
 ## Screenshots
 
 ![info](https://raw.githubusercontent.com/fluttercommunity/page_turn/screenshots/screenshots/demo.gif)
