@@ -7,7 +7,7 @@
 
 Add a page turn effect to widgets in your app.
 
-Created by Simon Lightfoot @slightfoot
+Created by Simon Lightfoot [@slightfoot](https://github.com/slightfoot)
 
 ## Screenshots
 
