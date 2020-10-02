@@ -113,7 +113,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
         } else {
           await _controllers[pageNumber].forward();
         }
-      } else {
+      } else if (pageNumber > 0) {
         print(
             'Val:${_controllers[pageNumber - 1].value} -> ${widget.cutoff + 0.28}');
         if (!_isFirstPage &&
@@ -170,6 +170,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    int i = 0;
     return Material(
       child: LayoutBuilder(
         builder: (context, dimens) => GestureDetector(
@@ -184,7 +185,13 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
                 widget.lastPage,
               ],
               if (pages != null)
-                ...pages
+                ...pages.map((p) {
+                  i++;
+                  final pn = pages.length - pageNumber;
+                  final ret = Offstage(
+                      offstage: !(i >= pn - 1 && i <= pn + 1), child: p);
+                  return ret;
+                }).toList()
               else ...[
                 Container(child: CircularProgressIndicator()),
               ],
