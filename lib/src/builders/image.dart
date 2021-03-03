@@ -63,7 +63,8 @@ class _PageTurnImageState extends State<PageTurnImage> {
   }
 
   void _resolveImage() {
-    final ImageStream newStream = widget.image.resolve(createLocalImageConfiguration(context));
+    final ImageStream newStream =
+        widget.image.resolve(createLocalImageConfiguration(context));
     _updateSourceStream(newStream);
   }
 
