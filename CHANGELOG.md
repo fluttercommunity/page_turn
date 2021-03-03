@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0
+
+* Migrate to nullsafety
+
 ## 1.0.1
 
 * Waiting for widget to load
