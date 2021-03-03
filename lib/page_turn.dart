@@ -5,12 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'src/builders/index.dart';
 
 class PageTurn extends StatefulWidget {
-  const PageTurn({
-    Key key,
+  PageTurn({
+    Key? key,
     this.duration = const Duration(milliseconds: 450),
     this.cutoff = 0.6,
     this.backgroundColor = const Color(0xFFFFFFCC),
-    @required this.children,
+    this.children = const [],
     this.initialIndex = 0,
     this.lastPage,
     this.showDragCutoff = false,
@@ -20,7 +20,7 @@ class PageTurn extends StatefulWidget {
   final List<Widget> children;
   final Duration duration;
   final int initialIndex;
-  final Widget lastPage;
+  final Widget? lastPage;
   final bool showDragCutoff;
   final double cutoff;
 
@@ -33,7 +33,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
   List<Widget> pages = [];
 
   List<AnimationController> _controllers = [];
-  bool _isForward;
+  bool? _isForward;
 
   @override
   void didUpdateWidget(PageTurn oldWidget) {
@@ -84,7 +84,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
     pageNumber = widget.initialIndex;
   }
 
-  bool get _isLastPage => pages != null && (pages.length - 1) == pageNumber;
+  bool get _isLastPage => pages.length - 1 == pageNumber;
 
   bool get _isFirstPage => pageNumber == 0;
 
@@ -97,27 +97,23 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
         _isForward = true;
       }
     }
-    if (_isForward || pageNumber == 0) {
+    if (_isForward! || pageNumber == 0) {
       _controllers[pageNumber].value += _ratio;
     } else {
       _controllers[pageNumber - 1].value += _ratio;
     }
   }
 
-  Future _onDragFinish() async {
+  Future<void> _onDragFinish() async {
     if (_isForward != null) {
-      if (_isForward) {
-        if (!_isLastPage &&
-            _controllers[pageNumber].value <= (widget.cutoff + 0.15)) {
+      if (_isForward!) {
+        if (!_isLastPage && _controllers[pageNumber].value <= (widget.cutoff + 0.15)) {
           await nextPage();
         } else {
           await _controllers[pageNumber].forward();
         }
       } else {
-        print(
-            'Val:${_controllers[pageNumber - 1].value} -> ${widget.cutoff + 0.28}');
-        if (!_isFirstPage &&
-            _controllers[pageNumber - 1].value >= widget.cutoff) {
+        if (!_isFirstPage && _controllers[pageNumber - 1].value >= widget.cutoff) {
           await previousPage();
         } else {
           if (_isFirstPage) {
@@ -131,8 +127,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
     _isForward = null;
   }
 
-  Future nextPage() async {
-    print('Next Page..');
+  Future<void> nextPage() async {
     await _controllers[pageNumber].reverse();
     if (mounted)
       setState(() {
@@ -140,8 +135,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
       });
   }
 
-  Future previousPage() async {
-    print('Previous Page..');
+  Future<void> previousPage() async {
     await _controllers[pageNumber - 1].forward();
     if (mounted)
       setState(() {
@@ -149,8 +143,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
       });
   }
 
-  Future goToPage(int index) async {
-    print('Navigate Page ${index + 1}..');
+  Future<void> goToPage(int index) async {
     if (mounted)
       setState(() {
         pageNumber = index;
@@ -159,11 +152,9 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
       if (i == index) {
         _controllers[i].forward();
       } else if (i < index) {
-        // _controllers[i].value = 0;
         _controllers[i].reverse();
       } else {
-        if (_controllers[i].status == AnimationStatus.reverse)
-          _controllers[i].value = 1;
+        if (_controllers[i].status == AnimationStatus.reverse) _controllers[i].value = 1;
       }
     }
   }
@@ -180,14 +171,10 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              if (widget?.lastPage != null) ...[
-                widget.lastPage,
+              if (widget.lastPage != null) ...[
+                widget.lastPage!,
               ],
-              if (pages != null)
-                ...pages
-              else ...[
-                Container(child: CircularProgressIndicator()),
-              ],
+              ...pages,
               Positioned.fill(
                 child: Flex(
                   direction: Axis.horizontal,
@@ -195,9 +182,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
                     Flexible(
                       flex: (widget.cutoff * 10).round(),
                       child: Container(
-                        color: widget.showDragCutoff
-                            ? Colors.blue.withAlpha(100)
-                            : null,
+                        color: widget.showDragCutoff ? Colors.blue.withAlpha(100) : null,
                         child: GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: _isFirstPage ? null : previousPage,
@@ -207,9 +192,7 @@ class PageTurnState extends State<PageTurn> with TickerProviderStateMixin {
                     Flexible(
                       flex: 10 - (widget.cutoff * 10).round(),
                       child: Container(
-                        color: widget.showDragCutoff
-                            ? Colors.red.withAlpha(100)
-                            : null,
+                        color: widget.showDragCutoff ? Colors.red.withAlpha(100) : null,
                         child: GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: _isLastPage ? null : nextPage,

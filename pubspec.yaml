@@ -9,7 +9,7 @@ homepage: https://github.com/fluttercommunity/page_turn
 maintainer: Rody Davis (@rodydavis)
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
   flutter:
